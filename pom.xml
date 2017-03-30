@@ -8,6 +8,7 @@
 
     <modules>
         <module>fizzbuzz</module>
+        <module>koans</module>
     </modules>
 </project>
 
