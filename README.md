@@ -5,6 +5,11 @@ Projects to learn TTD using JUnit using:
     * [fizzbuzz](fizzbuzz/README.md)
 * Koans [koans](koans/README.md)
 
+## Requirements
+
+* JDK 1.8
+* Maven 3.3.x
+
 ## HowTo
 
 Clone the project:
