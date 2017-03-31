@@ -20,7 +20,7 @@ public class AboutStringsTest {
         // practice - generally it is redundant, and done repetitively can be slow
         String string = new String();
         String empty = "";
-        Assert.assertEquals(string.equals(empty), "__");
+        Assert.assertEquals(string.equals(empty), true);
     }
 
     @Test
