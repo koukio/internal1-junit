@@ -11,7 +11,7 @@ public class AboutStringsTest {
 
     @Test
     public void implicitStrings() {
-        Assert.assertEquals("just a plain ole string".getClass(), "__");
+        Assert.assertEquals("just a plain ole string".getClass(), "__".getClass());
     }
 
     @Test
