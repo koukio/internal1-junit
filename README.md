@@ -1,4 +1,4 @@
-# TTD babysteps
+# TDD babysteps
 
 Projects to learn TTD using JUnit using: 
 * Katas: 
