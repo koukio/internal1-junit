@@ -21,9 +21,9 @@ public class AboutCollectionsTest {
         list.add("Chicken");
         list.add("Dog");
         list.add("Chicken");
-        assertEquals(list.get(0), false);
-        assertEquals(list.get(1), false);
-        assertEquals(list.get(2), false);
+        assertEquals(list.get(0), "Chicken");
+        assertEquals(list.get(1), "Dog");
+        assertEquals(list.get(2), "Chicken");
     }
 
     @Test
@@ -33,12 +33,12 @@ public class AboutCollectionsTest {
         // PriorityQueue: simple queue implementation
         queue.add("Cat");
         queue.add("Dog");
-        assertEquals(queue.peek(), false);
-        assertEquals(queue.size(), false);
-        assertEquals(queue.poll(), false);
-        assertEquals(queue.size(), false);
-        assertEquals(queue.poll(), false);
-        assertEquals(queue.isEmpty(), false);
+        assertEquals(queue.peek(), "Cat");
+        assertEquals(queue.size(), 2);
+        assertEquals(queue.poll(), "Cat");
+        assertEquals(queue.size(), 1);
+        assertEquals(queue.poll(), "Dog");
+        assertEquals(queue.isEmpty(), true);
     }
 
     @Test
@@ -47,9 +47,9 @@ public class AboutCollectionsTest {
         set.add("Dog");
         set.add("Cat");
         set.add("Dog");
-        assertEquals(set.size(), false);
-        assertEquals(set.contains("Dog"), false);
-        assertEquals(set.contains("Cat"), false);
+        assertEquals(set.size(), 2);
+        assertEquals(set.contains("Dog"), true);
+        assertEquals(set.contains("Cat"), true);
         assertEquals(set.contains("Chicken"), false);
     }
 
@@ -59,11 +59,11 @@ public class AboutCollectionsTest {
         map.put("first key", "first value");
         map.put("second key", "second value");
         map.put("first key", "other value");
-        assertEquals(map.size(), false);
-        assertEquals(map.containsKey("first key"), false);
-        assertEquals(map.containsKey("second key"), false);
+        assertEquals(map.size(), 2);
+        assertEquals(map.containsKey("first key"), true);
+        assertEquals(map.containsKey("second key"), true);
         assertEquals(map.containsValue("first value"), false);
-        assertEquals(map.get("first key"), false);
+        assertEquals(map.get("first key"), "other value");
     }
 
     @Test
@@ -71,9 +71,9 @@ public class AboutCollectionsTest {
         String[] array = {"a", "b", "c"};
         List<String> list = Arrays.asList(array);
         list.set(0, "x");
-        assertEquals(array[0], false);
+        assertEquals(array[0], "x");
         array[0] = "a";
-        assertEquals(list.get(0), false);
+        assertEquals(list.get(0), "a");
         // Just think of it as quantum state teleportation...
     }
 
@@ -86,12 +86,12 @@ public class AboutCollectionsTest {
         map.put("e", "Emu");
         map.put("f", "Fox");
         SortedMap<String, String> backedMap = map.subMap("c", "f");
-        assertEquals(backedMap.size(), false);
-        assertEquals(map.size(), false);
+        assertEquals(backedMap.size(), 2);
+        assertEquals(map.size(), 5);
         backedMap.put("d", "Dog");
-        assertEquals(backedMap.size(), false);
-        assertEquals(map.size(), false);
-        assertEquals(map.containsKey("d"), false);
+        assertEquals(backedMap.size(), 3);
+        assertEquals(map.size(), 6);
+        assertEquals(map.containsKey("d"), true);
         // Again: backed maps are just like those little quantum states
         // that are connected forever...
     }
@@ -102,8 +102,8 @@ public class AboutCollectionsTest {
         sorted.add("c");
         sorted.add("z");
         sorted.add("a");
-        assertEquals(sorted.first(), false);
-        assertEquals(sorted.last(), false);
+        assertEquals(sorted.first(), "a");
+        assertEquals(sorted.last(), "z");
         // Look at the different constructors for a TreeSet (or TreeMap)
         // Ponder how you might influence the sort order. Hold that thought
         // until you approach AboutComparison
@@ -116,7 +116,7 @@ public class AboutCollectionsTest {
         for (String s : ordered) {
             sb.append(s);
         }
-        assertEquals(sb.toString(), false);
+        assertEquals(sb.toString(), "cza");
     }
 
 }
