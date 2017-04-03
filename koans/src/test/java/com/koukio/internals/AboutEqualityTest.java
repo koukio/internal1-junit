@@ -82,18 +82,29 @@ public class AboutEqualityTest {
         }
 
         @Override
-        public boolean equals(Object other) {
-            // Change this implementation to match the equals contract
-            // Car objects with same horsepower and name values should be considered equal
-            // http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals(java.lang.Object)
-            return false;
-        }
+		public boolean equals(Object obj) {
+			if ( !(obj instanceof Car) ) {
+				return false;
+			}
+        	Car other = (Car) obj;
+			if (horsepower != other.horsepower)
+				return false;
+			if (name == null) {
+				if (other.name != null)
+					return false;
+			} else if (!name.equals(other.name))
+				return false;
+			return true;
+		}
 
         @Override
-        public int hashCode() {
-            // @see http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode()
-            return super.hashCode();
-        }
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + horsepower;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
     }
 
     @Test
