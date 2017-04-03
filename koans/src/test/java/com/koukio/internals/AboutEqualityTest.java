@@ -13,22 +13,22 @@ public class AboutEqualityTest {
     public void doubleEqualsTestsIfTwoObjectsAreTheSame() {
         Object object = new Object();
         Object sameObject = object;
-        assertEquals(object == sameObject, false);
-        assertEquals(object == new Object(), false);
+        assertEquals(object == sameObject, true);
+        assertEquals(object == new Object(), false); //***
     }
 
     @Test
     public void equalsMethodByDefaultTestsIfTwoObjectsAreTheSame() {
         Object object = new Object();
-        assertEquals(object.equals(object), false);
-        assertEquals(object.equals(new Object()), false);
+        assertEquals(object.equals(object), true);
+        assertEquals(object.equals(new Object()), false); //***
     }
 
     @Test
     public void equalsMethodCanBeChangedBySubclassesToTestsIfTwoObjectsAreEqual() {
         Object object = new Integer(1);
-        assertEquals(object.equals(object), false);
-        assertEquals(object.equals(new Integer(1)), false);
+        assertEquals(object.equals(object), true);
+        assertEquals(object.equals(new Integer(1)), true);
         // Note: This means that for the class 'Object' there is no difference between 'equal' and 'same'
         // but for the class 'Integer' there is difference - see below
     }
@@ -37,8 +37,8 @@ public class AboutEqualityTest {
     public void equalsMethodCanBeChangedBySubclassesToTestsIfTwoObjectsAreEqualExample() {
         Integer value1 = new Integer(4);
         Integer value2 = new Integer(2 + 2);
-        assertEquals(value1.equals(value2), false);
-        assertEquals(value1, false);
+        assertEquals(value1.equals(value2), true);
+        assertEquals(value1, Integer.valueOf(4));
     }
 
     @Test
@@ -49,22 +49,22 @@ public class AboutEqualityTest {
     @Test
     public void objectsEqualThemselves() {
         Object obj = new Object();
-        assertEquals(obj.equals(obj), false);
+        assertEquals(obj.equals(obj), true);
     }
 
     @Test
     public void sameObject() {
         Object a = new Object();
         Object b = a;
-        assertEquals(a == b, false);
+        assertEquals(a == b, true);
     }
 
     @Test
     public void equalObject() {
         Integer a = new Integer(1);
         Integer b = new Integer(1);
-        assertEquals(a.equals(b), false);
-        assertEquals(b.equals(a), false);
+        assertEquals(a.equals(b), true);
+        assertEquals(b.equals(a), true);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class AboutEqualityTest {
         chicken1.color = "black";
         Chicken chicken2 = new Chicken();
         assertEquals(chicken1.equals(chicken2), false);
-        assertEquals(chicken1.hashCode() == chicken2.hashCode(), false);
+        assertEquals(chicken1.hashCode() == chicken2.hashCode(), true);
         // Does this still fit the hashCode contract? Why (not)?
         // Fix the Chicken class to correct this.
     }
