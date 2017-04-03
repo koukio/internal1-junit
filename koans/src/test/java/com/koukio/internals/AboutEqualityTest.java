@@ -13,22 +13,22 @@ public class AboutEqualityTest {
     public void doubleEqualsTestsIfTwoObjectsAreTheSame() {
         Object object = new Object();
         Object sameObject = object;
-        assertEquals(object == sameObject, false);
+        assertEquals(object == sameObject, true);
         assertEquals(object == new Object(), false);
     }
 
     @Test
     public void equalsMethodByDefaultTestsIfTwoObjectsAreTheSame() {
         Object object = new Object();
-        assertEquals(object.equals(object), false);
+        assertEquals(object.equals(object), true);
         assertEquals(object.equals(new Object()), false);
     }
 
     @Test
     public void equalsMethodCanBeChangedBySubclassesToTestsIfTwoObjectsAreEqual() {
         Object object = new Integer(1);
-        assertEquals(object.equals(object), false);
-        assertEquals(object.equals(new Integer(1)), false);
+        assertEquals(object.equals(object), true);
+        assertEquals(object.equals(new Integer(1)), true);
         // Note: This means that for the class 'Object' there is no difference between 'equal' and 'same'
         // but for the class 'Integer' there is difference - see below
     }
@@ -37,8 +37,8 @@ public class AboutEqualityTest {
     public void equalsMethodCanBeChangedBySubclassesToTestsIfTwoObjectsAreEqualExample() {
         Integer value1 = new Integer(4);
         Integer value2 = new Integer(2 + 2);
-        assertEquals(value1.equals(value2), false);
-        assertEquals(value1, false);
+        assertEquals(value1.equals(value2), true);
+        assertEquals(value1, new Integer(4));
     }
 
     @Test
@@ -49,22 +49,22 @@ public class AboutEqualityTest {
     @Test
     public void objectsEqualThemselves() {
         Object obj = new Object();
-        assertEquals(obj.equals(obj), false);
+        assertEquals(obj.equals(obj), true);
     }
 
     @Test
     public void sameObject() {
         Object a = new Object();
         Object b = a;
-        assertEquals(a == b, false);
+        assertEquals(a == b, true);
     }
 
     @Test
     public void equalObject() {
         Integer a = new Integer(1);
         Integer b = new Integer(1);
-        assertEquals(a.equals(b), false);
-        assertEquals(b.equals(a), false);
+        assertEquals(a.equals(b), true);
+        assertEquals(b.equals(a), true);
     }
 
     @Test
@@ -82,18 +82,32 @@ public class AboutEqualityTest {
         }
 
         @Override
-        public boolean equals(Object other) {
-            // Change this implementation to match the equals contract
-            // Car objects with same horsepower and name values should be considered equal
-            // http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals(java.lang.Object)
-            return false;
-        }
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (!(obj instanceof Car))
+				return false;
+			Car other = (Car) obj;
+			if (horsepower != other.horsepower)
+				return false;
+			if (name == null) {
+				if (other.name != null)
+					return false;
+			} else if (!name.equals(other.name))
+				return false;
+			return true;
+		}
 
         @Override
-        public int hashCode() {
-            // @see http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode()
-            return super.hashCode();
-        }
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + horsepower;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
     }
 
     @Test
@@ -146,16 +160,29 @@ public class AboutEqualityTest {
         String color = "green";
 
         @Override
-        public int hashCode() {
-            return 4000;
-        }
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((color == null) ? 0 : color.hashCode());
+			return result;
+		}
 
         @Override
-        public boolean equals(Object other) {
-            if (!(other instanceof Chicken))
-                return false;
-            return ((Chicken) other).color.equals(color);
-        }
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (!(obj instanceof Chicken))
+				return false;
+			Chicken other = (Chicken) obj;
+			if (color == null) {
+				if (other.color != null)
+					return false;
+			} else if (!color.equals(other.color))
+				return false;
+			return true;
+		}
     }
 
     @Test
