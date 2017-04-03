@@ -14,7 +14,7 @@ public class AboutConditionalsTest {
         if (true) {
             x++;
         }
-        assertEquals(x, false);
+        assertEquals(x, 2);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class AboutConditionalsTest {
         } else {
             x--;
         }
-        assertEquals(x, false);
+        assertEquals(x, 0);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class AboutConditionalsTest {
         } else {
             x--;
         }
-        assertEquals(x, false);
+        assertEquals(x, 10);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class AboutConditionalsTest {
             x--;
         }
         // Where does this else belong to!?
-        assertEquals(x, false);
+        assertEquals(x, 10);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class AboutConditionalsTest {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, false);
+        assertEquals(result, "Basic One");
     }
 
     @Test
@@ -92,7 +92,7 @@ public class AboutConditionalsTest {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, false);
+        assertEquals(result, "Basic OneTwoNothing");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class AboutConditionalsTest {
             case 2:
                 result += "Two";
         }
-        assertEquals(result, false);
+        assertEquals(result, "Basic NothingTwo");
     }
 
     @Test
@@ -124,7 +124,7 @@ public class AboutConditionalsTest {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, false);
+        assertEquals(result, "Basic Nothing");
     }
 
     @Test
@@ -141,7 +141,7 @@ public class AboutConditionalsTest {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, false);
+        assertEquals(result, "Basic One");
     }
 
     @Test
@@ -151,6 +151,6 @@ public class AboutConditionalsTest {
         // Why did we use a variable here?
         // What happens if you replace 'a' with '6' below?
         if ((a < 9) || (++i < 8)) i = i + 1;
-        assertEquals(i, false);
+        assertEquals(i, 2);
     }
 }
