@@ -42,11 +42,11 @@ public class AboutInheritanceTest {
         Cow bob = new Cow();
         Dog max = new Dog();
         Puppy barney = new Puppy();
-        assertEquals(bob.makeSomeNoise(), false);
-        assertEquals(max.makeSomeNoise(), false);
-        assertEquals(barney.makeSomeNoise(), false);
+        assertEquals(bob.makeSomeNoise(), "Moo!");
+        assertEquals(max.makeSomeNoise(), "Woof!");
+        assertEquals(barney.makeSomeNoise(), "Squeak!");
 
-        assertEquals(max.canFetch(), false);
+        assertEquals(max.canFetch(), true);
         assertEquals(barney.canFetch(), false);
         // but can Bob the Cow fetch?
     }
@@ -56,21 +56,23 @@ public class AboutInheritanceTest {
         Animal bob = new Cow();
         Animal max = new Dog();
         Animal barney = new Puppy();
-        assertEquals(bob.makeSomeNoise(), false);
-        assertEquals(max.makeSomeNoise(), false);
-        assertEquals(barney.makeSomeNoise(), false);
+        assertEquals(bob.makeSomeNoise(), "Moo!");
+        assertEquals(max.makeSomeNoise(), "Woof!");
+        assertEquals(barney.makeSomeNoise(), "Squeak!");
         // but can max or barney (here as an Animal) fetch?
         // try to write it down here
+        
+        //The method canFetch() is undefined for the type AboutInheritanceTest.Animal
     }
 
     @Test
     public void inheritanceHierarchy() {
         Animal someAnimal = new Cow();
         Animal bob = new Cow();
-        assertEquals(someAnimal.makeSomeNoise().equals(bob.makeSomeNoise()), false);
+        assertEquals(someAnimal.makeSomeNoise().equals(bob.makeSomeNoise()), true);
         // cow is a Cow, but it can also be an animal
-        assertEquals(bob instanceof Animal, false);
-        assertEquals(bob instanceof Cow, false);
+        assertEquals(bob instanceof Animal, true);
+        assertEquals(bob instanceof Cow, true);
         // but is it a Puppy?
         assertEquals(bob instanceof Puppy, false);
     }
@@ -80,9 +82,9 @@ public class AboutInheritanceTest {
         Dog max = new Dog();
         Puppy barney = new Puppy();
         assertEquals(max instanceof Puppy, false);
-        assertEquals(max instanceof Dog, false);
-        assertEquals(barney instanceof Puppy, false);
-        assertEquals(barney instanceof Dog, false);
+        assertEquals(max instanceof Dog, true);
+        assertEquals(barney instanceof Puppy, true);
+        assertEquals(barney instanceof Dog, true);
     }
 
     // TODO overriding
